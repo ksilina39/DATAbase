@@ -1,7 +1,7 @@
 
 
-import 'note.dart';
-import 'objectbox.g.dart';
+import '../model/note.dart';
+import '../objectbox.g.dart';
 
 
 

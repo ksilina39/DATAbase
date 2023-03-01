@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'note.dart';
-import 'notes_repository.dart';
+import '../model/note.dart';
+import '../repozitory/notes_repository.dart';
 
 
 class NotesPage extends StatefulWidget {

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'note_page.dart';
+import 'ui/note_page.dart';
 
 
 void main() {
