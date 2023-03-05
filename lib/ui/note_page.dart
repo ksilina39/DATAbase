@@ -1,3 +1,4 @@
+import 'package:database/ui/note_store.dart';
 import 'package:flutter/material.dart';
 
 import '../model/note.dart';
@@ -14,13 +15,12 @@ class NotesPage extends StatefulWidget {
 class _NotesPageState extends State<NotesPage> {
   final _notesRepo = NotesRepository();
   late var _notes = <Note>[];
+  final _viewModel = NoteStore();
 
   @override
   void initState() {
     super.initState();
-    _notesRepo
-        .initDB()
-        .whenComplete(() => setState(() => _notes = _notesRepo.notes));
+    _viewModel.init();
   }
 
   @override
@@ -46,10 +46,10 @@ class _NotesPageState extends State<NotesPage> {
                   icon: const Icon(Icons.edit)),
                 IconButton(
                   onPressed: () async {
-                    await _notesRepo.deleteNote(_notes[i]);
+                    await _viewModel.delete(_notes[i]);
                     setState(() {
-                      _notes = _notesRepo.notes;
-                    });
+                    Navigator.pop(context);
+                  });
                   }, 
                   icon: const Icon(Icons.delete))
               ],
@@ -87,14 +87,13 @@ class _NotesPageState extends State<NotesPage> {
             actions: [
               TextButton(
                 onPressed: () async {
-                  await _notesRepo.addNote(
+                  await _viewModel.add(
                     Note(
                       name: nameController.text,
                       description: descController.text,
                     ),
                   );
                   setState(() {
-                    _notes = _notesRepo.notes;
                     Navigator.pop(context);
                   });
                 },
@@ -129,7 +128,7 @@ class _NotesPageState extends State<NotesPage> {
             actions: [
               TextButton(
                 onPressed: () async {
-                  await _notesRepo.updateNote(
+                  await _viewModel.update(
                     note.id,
                     Note(
                       name: nameController.text,

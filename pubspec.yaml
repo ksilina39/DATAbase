@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   objectbox: 1.6.0
   objectbox_flutter_libs: 1.6.0
+  flutter_mobx: 2.0.6+4 # MobX под Flutter
+  mobx: 2.1.0 # Просто MobX
 
 dev_dependencies:
   flutter_test:
@@ -49,8 +51,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  build_runner: 2.2.0
   objectbox_generator: 1.6.0
+  mobx_codegen: 2.0.7+3 # Кодогенерация MobX
+  build_runner: 2.2.0 # Общий инструмент для любой кодогенерации
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
