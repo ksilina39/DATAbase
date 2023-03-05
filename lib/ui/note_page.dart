@@ -1,8 +1,9 @@
 import 'package:database/ui/note_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../model/note.dart';
-import '../repozitory/notes_repository.dart';
+//import '../repozitory/notes_repository.dart';
 
 
 class NotesPage extends StatefulWidget {
@@ -13,8 +14,8 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-  final _notesRepo = NotesRepository();
-  late var _notes = <Note>[];
+  //final _notesRepo = NotesRepository();
+  late final _notes = <Note>[];
   final _viewModel = NoteStore();
 
   @override
@@ -29,14 +30,15 @@ class _NotesPageState extends State<NotesPage> {
       appBar: AppBar(
         title: const Text('Notes'),
       ),
-      body: ListView.builder(
-        itemCount: _notes.length,
+      body: Observer(builder: (_) {
+        return ListView.builder(
+        itemCount: _viewModel.value.length,
         itemBuilder: (_, i) => ListTile(
           title: Text(
-            _notes[i].name,
+            _viewModel.value[i].name,
           ),
           subtitle: Text(
-            _notes[i].description,
+            _viewModel.value[i].description,
           ),
           trailing: Wrap(
               children: [
@@ -54,7 +56,7 @@ class _NotesPageState extends State<NotesPage> {
                   icon: const Icon(Icons.delete))
               ],
             ),
-        ),
+        ));}
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showDialog(),
@@ -136,7 +138,6 @@ class _NotesPageState extends State<NotesPage> {
                     ),
                   );
                   setState(() {
-                    _notes = _notesRepo.notes;
                     Navigator.pop(context);
                   });
                 },
