@@ -20,16 +20,19 @@ abstract class _NoteStore with Store {
         .whenComplete(() => value = _notesRepo.notes);
   }
 
+  @action
   Future delete(Note note) async {
     await _notesRepo.deleteNote(note);
     value = _notesRepo.notes;
   }
 
+  @action
   Future add(Note note) async {
     await _notesRepo.addNote(note);
     value = _notesRepo.notes;
   }
 
+  @action
   Future update(int id, Note note) async {
     await _notesRepo.updateNote(id, note);
     value = _notesRepo.notes;

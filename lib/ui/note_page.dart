@@ -43,15 +43,13 @@ class _NotesPageState extends State<NotesPage> {
           trailing: Wrap(
               children: [
                 IconButton(
-                  onPressed: (() =>  _showEditDialog( _notes[i]))
+                  onPressed: (() =>  _showEditDialog( _viewModel.value[i]))
                    , 
                   icon: const Icon(Icons.edit)),
                 IconButton(
                   onPressed: () async {
-                    await _viewModel.delete(_notes[i]);
-                    setState(() {
-                    Navigator.pop(context);
-                  });
+                    await _viewModel.delete(_viewModel.value[i]);
+                    //Navigator.pop(context);
                   }, 
                   icon: const Icon(Icons.delete))
               ],
@@ -95,9 +93,9 @@ class _NotesPageState extends State<NotesPage> {
                       description: descController.text,
                     ),
                   );
-                  setState(() {
+                  
                     Navigator.pop(context);
-                  });
+                  
                 },
                 child: const Text('Add'),
               )
@@ -137,9 +135,9 @@ class _NotesPageState extends State<NotesPage> {
                       description: descController.text,
                     ),
                   );
-                  setState(() {
+                  
                     Navigator.pop(context);
-                  });
+                 
                 },
                 child: const Text('Confirm'),
               )

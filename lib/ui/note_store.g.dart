@@ -32,6 +32,29 @@ mixin _$NoteStore on _NoteStore, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
+  late final _$deleteAsyncAction =
+      AsyncAction('_NoteStore.delete', context: context);
+
+  @override
+  Future<dynamic> delete(Note note) {
+    return _$deleteAsyncAction.run(() => super.delete(note));
+  }
+
+  late final _$addAsyncAction = AsyncAction('_NoteStore.add', context: context);
+
+  @override
+  Future<dynamic> add(Note note) {
+    return _$addAsyncAction.run(() => super.add(note));
+  }
+
+  late final _$updateAsyncAction =
+      AsyncAction('_NoteStore.update', context: context);
+
+  @override
+  Future<dynamic> update(int id, Note note) {
+    return _$updateAsyncAction.run(() => super.update(id, note));
+  }
+
   @override
   String toString() {
     return '''
