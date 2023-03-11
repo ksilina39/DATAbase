@@ -1,9 +1,10 @@
+import 'package:database/di/config.dart';
 import 'package:database/ui/note_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../model/note.dart';
-//import '../repozitory/notes_repository.dart';
+
 
 
 class NotesPage extends StatefulWidget {
@@ -14,9 +15,10 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-  //final _notesRepo = NotesRepository();
+  
   late final _notes = <Note>[];
-  final _viewModel = NoteStore();
+  final NoteStore _viewModel = getIt<NoteStore>();
+
 
   @override
   void initState() {

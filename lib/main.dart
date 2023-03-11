@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 
+import 'di/config.dart';
 import 'ui/note_page.dart';
 
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 

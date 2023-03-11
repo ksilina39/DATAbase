@@ -1,14 +1,19 @@
+import 'package:database/di/config.dart';
 import 'package:database/model/note.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
 import '../repozitory/notes_repository.dart';
 
 part 'note_store.g.dart'; // Указание для кодогенерации
 
+@Injectable()
 class NoteStore = _NoteStore with _$NoteStore;
 
 abstract class _NoteStore with Store {
-  final _notesRepo = NotesRepository();
+  final NotesRepository _notesRepo;
+
+  _NoteStore(this._notesRepo);
 
   @observable
   List<Note> value = [];

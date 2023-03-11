@@ -1,10 +1,11 @@
 
 
+import 'package:injectable/injectable.dart';
+
 import '../model/note.dart';
 import '../objectbox.g.dart';
 
-
-
+@Injectable()
 class NotesRepository {
   late final Store _store;
   late final Box<Note> _box;
